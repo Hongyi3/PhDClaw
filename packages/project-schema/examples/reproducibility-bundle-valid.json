@@ -1,0 +1,123 @@
+{
+  "schema_version": "1.3.0",
+  "project": {
+    "id": "samtools-methods-note",
+    "name": "SAMtools Methods Note",
+    "description": "Example methods-note project used to exercise the ClawBio Scholar reproducibility bundle contract.",
+    "created_at": "2026-03-07",
+    "keywords": [
+      "alignment",
+      "methods",
+      "provenance"
+    ]
+  },
+  "analysis_runs": [
+    {
+      "id": "samtools-count-summary",
+      "project_id": "samtools-methods-note",
+      "name": "Generate mapped-read summary table",
+      "description": "Example completed workflow run for validating ClawBio Scholar analysis-run manifests.",
+      "status": "completed",
+      "started_at": "2026-03-07T09:00:00Z",
+      "completed_at": "2026-03-07T09:12:00Z",
+      "workflow": {
+        "engine": "shell",
+        "entrypoint": "scripts/run_samtools_summary.sh",
+        "command": "bash scripts/run_samtools_summary.sh",
+        "version": "1.0"
+      },
+      "inputs": [
+        {
+          "id": "alignments-bam",
+          "kind": "alignment-bam",
+          "path": "inputs/sample-alignments.bam",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "media_type": "application/octet-stream"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "mapped-read-summary",
+          "kind": "summary-table",
+          "path": "outputs/mapped-read-summary.tsv",
+          "sha256": "4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5234f65e3c5d89",
+          "media_type": "text/tab-separated-values"
+        }
+      ],
+      "environment": {
+        "runtime": "python3.11",
+        "os": "ubuntu-24.04",
+        "container_image": "ghcr.io/clawbio/samtools-summary:0.1.0",
+        "packages": [
+          "samtools==1.20",
+          "python==3.11.11"
+        ]
+      },
+      "parameters": {
+        "threads": 4,
+        "min_mapping_quality": 20
+      }
+    }
+  ],
+  "figures": [
+    {
+      "id": "mapped-read-summary-figure",
+      "project_id": "samtools-methods-note",
+      "title": "Mapped read summary",
+      "caption": "Mapped reads per sample generated from the summary table produced by the example SAMtools workflow.",
+      "generated_at": "2026-03-07T09:20:00Z",
+      "upstream_analysis_run_ids": [
+        "samtools-count-summary"
+      ],
+      "inputs": [
+        {
+          "id": "mapped-read-summary",
+          "kind": "summary-table",
+          "path": "outputs/mapped-read-summary.tsv",
+          "sha256": "4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5234f65e3c5d89",
+          "media_type": "text/tab-separated-values",
+          "source_analysis_run_id": "samtools-count-summary"
+        }
+      ],
+      "output": {
+        "id": "mapped-read-summary-png",
+        "kind": "figure-image",
+        "path": "figures/mapped-read-summary.png",
+        "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "media_type": "image/png"
+      },
+      "render": {
+        "engine": "python-matplotlib",
+        "entrypoint": "scripts/render_mapped_read_summary_figure.py",
+        "command": "python3 scripts/render_mapped_read_summary_figure.py",
+        "version": "0.1.0",
+        "parameters": {
+          "x": "sample",
+          "y": "mapped_reads"
+        }
+      },
+      "environment": {
+        "runtime": "python3.11",
+        "os": "ubuntu-24.04",
+        "container_image": "ghcr.io/clawbio/samtools-summary:0.1.0",
+        "packages": [
+          "matplotlib==3.10.1",
+          "pandas==2.2.3",
+          "python==3.11.11"
+        ]
+      },
+      "panels": [
+        {
+          "id": "panel-a",
+          "label": "A",
+          "description": "Mapped reads per sample from the example summary table.",
+          "input_ids": [
+            "mapped-read-summary"
+          ]
+        }
+      ],
+      "notes": "This manifest is a local-only example fixture embedded in the reproducibility bundle."
+    }
+  ],
+  "notes": "Example provenance-only reproducibility bundle fixture for local schema validation."
+}

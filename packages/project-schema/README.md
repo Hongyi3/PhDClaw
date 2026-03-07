@@ -1,22 +1,34 @@
 # project-schema
 
-Canonical schemas for ClawBio Scholar.
+Canonical JSON Schemas and validation helpers for ClawBio Scholar research objects.
 
-## Implemented in this milestone
+## Implementation approach
 
-- JSON Schema contracts for `citation`, `claim`, and `claim-set`
-- Python validation helpers for bundle-level checks that JSON Schema alone does not express cleanly
-- example fixtures for valid and invalid claim sets
-- pytest coverage for schema loading and validation behavior
+- Draft 2020-12 JSON Schema files are the canonical machine-readable contracts.
+- Python validation helpers enforce cross-record rules for integrated bundles and figure-manifest integrity checks when raw JSON Schema would be awkward or misleading.
+- This package intentionally stops at local validation; it does not perform live DOI/PMID resolution or workflow execution.
+
+## Implemented through the reproducibility bundle milestone
+
+- standalone schemas for `project`, `citation`, `claim`, `analysis-run`, and `figure`
+- an integrated `claim-set` bundle format with optional top-level `project` metadata and `analysis_runs`
+- a provenance-only `reproducibility-bundle` format with embedded `project`, `analysis_runs`, and `figures`
+- Python bundle validation for citation references, analysis-run references, duplicate ids, project alignment, and figure-to-run provenance links
+- Python figure validation for duplicate input ids, duplicate panel ids, and panel-to-input references
+- example fixtures for valid and invalid claim-set, figure, and reproducibility-bundle validation cases
+- pytest coverage for schema loading, round-trip validation, and format checking
 
 ## Implemented models
+
+- `Project`
 - `Citation`
 - `Claim`
-- `claim-set`
-
-## Planned next models
 - `AnalysisRun`
 - `Figure`
+- `claim-set`
+- `reproducibility-bundle`
+
+## Planned next contracts
 - `Release`
 - broader project-level entities once downstream packages need them
 
@@ -28,6 +40,7 @@ from project_schema import (
     load_schema,
     validate_claim_set,
     validate_document,
+    validate_reproducibility_bundle,
 )
 ```
 
@@ -39,6 +52,12 @@ Run the package tests from the repository root:
 pytest tests/test_project_schema.py
 ```
 
+Run the scaffold validator required by the milestone:
+
+```bash
+python3 scripts/validate_scaffold.py
+```
+
 Run the full repository validation path:
 
 ```bash
@@ -47,4 +66,4 @@ make check
 
 ## Scope boundary
 
-This package slice intentionally stops at local schema validation. Live DOI/PMID resolution, benchmark harnesses, and additional research-object schemas remain follow-up milestones.
+This package slice intentionally stops at local schema validation for `Project`, `Citation`, `Claim`, `AnalysisRun`, `Figure`, `claim-set`, and `reproducibility-bundle`. Release packaging, claim-to-figure linking, live identifier resolution, and RO-Crate/export concerns remain follow-up milestones.

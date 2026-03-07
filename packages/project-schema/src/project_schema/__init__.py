@@ -6,6 +6,7 @@ from project_schema.api import (
     load_schema,
     validate_claim_set,
     validate_document,
+    validate_reproducibility_bundle,
 )
 
 __all__ = [
@@ -14,4 +15,5 @@ __all__ = [
     "load_schema",
     "validate_claim_set",
     "validate_document",
+    "validate_reproducibility_bundle",
 ]

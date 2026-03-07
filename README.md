@@ -20,7 +20,7 @@ The north star is simple:
 
 ## Current implementation status
 
-This repository now contains the planning and governance layer plus the first implemented research-object schema slice.
+This repository now contains the planning and governance layer plus the Phase 1 schema foundation and reproducibility-bundle contract.
 
 Current working capabilities:
 
@@ -30,8 +30,9 @@ Current working capabilities:
 - a milestone-by-milestone execution plan in `plans/`
 - architecture, evaluation, and launch documents in `docs/`
 - GitHub issue forms, CODEOWNERS, CI, and release-prep metadata
-- a JSON-Schema-first `project-schema` package for `Citation`, `Claim`, and `claim-set` validation
-- example claim-set fixtures and pytest coverage for schema and bundle validation
+- a JSON-Schema-first `project-schema` package for `Project`, `Citation`, `Claim`, `AnalysisRun`, and `Figure`
+- Python validation for the integrated `claim-set` bundle format, standalone figure-manifest integrity checks, and the provenance-only `reproducibility-bundle`
+- example claim-set, figure, and reproducibility-bundle fixtures with pytest coverage for schema loading, round-trip validation, and reference checks
 - Quarto starter templates for article, thesis, and reviewer response workflows
 - JOSS paper starter material
 
@@ -44,15 +45,15 @@ Current working capabilities:
 
 ## Next 10 tasks
 
-1. Replace placeholder metadata in `CITATION.cff`, `codemeta.json`, and `CODEOWNERS`.
-2. Expand `project-schema` beyond `Claim` and `Citation` to cover `AnalysisRun`, `Figure`, and `Release`.
+1. Expand `project-schema` to cover `Release`.
+2. Replace placeholder metadata in `CITATION.cff`, `codemeta.json`, and `CODEOWNERS`.
 3. Implement the evidence graph package.
 4. Add DOI / PMID / BibTeX ingestion.
 5. Define unsupported-claim benchmark fixture formats.
-6. Define the reproducibility bundle contract.
-7. Ship Quarto thesis and article templates with render smoke tests.
-8. Add reporting-guideline and AI-disclosure checks.
-9. Decide the initial exemplar set: scRNA-seq, UK Biobank, metagenomics.
+6. Ship Quarto thesis and article templates with render smoke tests.
+7. Add reporting-guideline and AI-disclosure checks.
+8. Decide the initial exemplar set: scRNA-seq, UK Biobank, metagenomics.
+9. Implement citation metadata validation and RO-Crate mapping.
 10. Prepare the first DOI-backed public release and software-paper draft.
 
 ## Repo map
@@ -91,3 +92,5 @@ The `project-schema` package can also be exercised directly with:
 ```bash
 pytest tests/test_project_schema.py
 ```
+
+The package uses bundled JSON Schemas for entity contracts and Python helpers for `claim-set`, `figure`, and `reproducibility-bundle` graph validation.

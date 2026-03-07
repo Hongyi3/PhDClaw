@@ -13,6 +13,8 @@
 - evidence graph prototype
 - bibliography verification
 
+Current implemented slice: Phase 1 schema foundation in `packages/project-schema` for `Project`, `Citation`, `Claim`, `AnalysisRun`, `Figure`, integrated `claim-set` bundle validation, and the provenance-only `reproducibility-bundle` contract.
+
 ## v0.3 — Workflow alpha
 - project bootstrapper
 - run manifest generation

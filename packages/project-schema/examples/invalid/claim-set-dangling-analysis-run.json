@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.3.0",
+  "project": {
+    "id": "samtools-methods-note",
+    "name": "SAMtools Methods Note",
+    "description": "Example methods-note project used to exercise the ClawBio Scholar Phase 1 core schema layer.",
+    "created_at": "2026-03-07"
+  },
+  "citations": [],
+  "analysis_runs": [
+    {
+      "id": "samtools-count-summary",
+      "project_id": "samtools-methods-note",
+      "name": "Generate mapped-read summary table",
+      "status": "completed",
+      "started_at": "2026-03-07T09:00:00Z",
+      "completed_at": "2026-03-07T09:12:00Z",
+      "workflow": {
+        "engine": "shell",
+        "entrypoint": "scripts/run_samtools_summary.sh"
+      },
+      "inputs": [],
+      "outputs": [],
+      "environment": {
+        "runtime": "python3.11"
+      }
+    }
+  ],
+  "claims": [
+    {
+      "id": "example-run-generated-summary-table",
+      "text": "The example workflow run generated a mapped-read summary table for downstream review.",
+      "analysis_run_ids": [
+        "missing-analysis-run"
+      ]
+    }
+  ]
+}

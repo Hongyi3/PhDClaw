@@ -1,0 +1,58 @@
+{
+  "id": "mapped-read-summary-figure",
+  "project_id": "samtools-methods-note",
+  "title": "Mapped read summary",
+  "caption": "Mapped reads per sample generated from the summary table produced by the example SAMtools workflow.",
+  "generated_at": "2026-03-07T09:20:00Z",
+  "upstream_analysis_run_ids": [
+    "samtools-count-summary"
+  ],
+  "inputs": [
+    {
+      "id": "mapped-read-summary",
+      "kind": "summary-table",
+      "path": "outputs/mapped-read-summary.tsv",
+      "sha256": "4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5234f65e3c5d89",
+      "media_type": "text/tab-separated-values",
+      "source_analysis_run_id": "samtools-count-summary"
+    }
+  ],
+  "output": {
+    "id": "mapped-read-summary-png",
+    "kind": "figure-image",
+    "path": "figures/mapped-read-summary.png",
+    "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+    "media_type": "image/png"
+  },
+  "render": {
+    "engine": "python-matplotlib",
+    "entrypoint": "scripts/render_mapped_read_summary_figure.py",
+    "command": "python3 scripts/render_mapped_read_summary_figure.py",
+    "version": "0.1.0",
+    "parameters": {
+      "x": "sample",
+      "y": "mapped_reads"
+    }
+  },
+  "environment": {
+    "runtime": "python3.11",
+    "os": "ubuntu-24.04",
+    "container_image": "ghcr.io/clawbio/samtools-summary:0.1.0",
+    "packages": [
+      "matplotlib==3.10.1",
+      "pandas==2.2.3",
+      "python==3.11.11"
+    ]
+  },
+  "panels": [
+    {
+      "id": "panel-a",
+      "label": "A",
+      "description": "Mapped reads per sample from the example summary table.",
+      "input_ids": [
+        "missing-input"
+      ]
+    }
+  ],
+  "notes": "This manifest intentionally includes a dangling panel input reference."
+}

@@ -69,7 +69,9 @@ The internal data model should treat the project as a graph of linked scholarly 
 ## Package responsibilities
 
 ### `project-schema`
-Canonical schemas, validation, migrations, examples.
+Canonical JSON Schemas, Python cross-record validation, migrations, and examples.
+
+Current implemented foundation: `Project`, `Citation`, `Claim`, `AnalysisRun`, `Figure`, standalone figure validation, an integrated `claim-set` bundle validator, and a provenance-only `reproducibility-bundle` contract.
 
 ### `evidence-graph`
 Identifier resolution, citation graph, claim cards, evidence linking.

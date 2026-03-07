@@ -15,9 +15,9 @@
 - Build unsupported-claim benchmark fixture format
 
 ## Reproducibility
-- Define `AnalysisRun` manifest schema
-- Define figure provenance manifest schema
-- Add reproducibility bundle contract
+- Define `AnalysisRun` manifest schema (implemented 2026-03-07)
+- Define figure provenance manifest schema (implemented 2026-03-07)
+- Add reproducibility bundle contract (implemented 2026-03-07)
 
 ## Manuscript
 - Finalize Quarto article template
@@ -26,6 +26,7 @@
 - Add response-to-reviewers template
 
 ## Release
+- Define `Release` schema in `packages/project-schema`
 - Define release checklist
 - Implement citation metadata validation
 - Add RO-Crate mapping spec
