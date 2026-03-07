@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.quarto/
+_site/
+.DS_Store
+dist/
+build/
+*.egg-info/
+coverage.xml
+htmlcov/

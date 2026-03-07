@@ -1,0 +1,40 @@
+# ClawBio Scholar
+
+ClawBio Scholar is a planned companion project to ClawBio focused on biomedical and computational-biology PhD workflows.
+
+## Goal
+
+Turn doctoral research work into reproducible, auditable, publication-ready, citable outputs.
+
+## Core outcomes
+
+- verified literature ingestion
+- evidence graph + claims model
+- study-design and reporting-guideline awareness
+- workflow scaffolding and provenance
+- Quarto-based manuscript and thesis generation
+- DOI-ready software release packaging
+
+## Important files
+
+- `AGENTS.md` — working contract for coding agents
+- `plans/master-plan.md` — milestone-by-milestone source of truth
+- `plans/implement.md` — execution rules for Codex
+- `plans/documentation.md` — running status / decisions log
+- `docs/01-architecture.md` — research object model and system design
+- `docs/03-evaluation.md` — benchmark strategy and release gates
+
+## Project layout
+
+- `apps/`
+- `packages/`
+- `scholar-skills/`
+- `templates/`
+- `examples/`
+- `benchmarks/`
+- `paper/`
+- `.agents/skills/`
+
+## Current status
+
+Planning scaffold only. Product code is not implemented yet.

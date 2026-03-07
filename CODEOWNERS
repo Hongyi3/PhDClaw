@@ -1,0 +1,10 @@
+# Replace placeholders with real maintainers before public launch.
+
+* @YOUR_GITHUB_HANDLE
+
+/.github/ @YOUR_GITHUB_HANDLE
+/docs/ @YOUR_GITHUB_HANDLE
+/packages/ @YOUR_GITHUB_HANDLE
+/scholar-skills/ @YOUR_GITHUB_HANDLE
+/templates/ @YOUR_GITHUB_HANDLE
+/paper/ @YOUR_GITHUB_HANDLE

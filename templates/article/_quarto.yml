@@ -1,0 +1,10 @@
+project:
+  type: manuscript
+
+format:
+  html: default
+  pdf: default
+  docx: default
+
+bibliography: references.bib
+csl: nature.csl

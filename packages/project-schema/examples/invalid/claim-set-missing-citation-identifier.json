@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "citations": [
+    {
+      "id": "li-2009-samtools",
+      "title": "The Sequence Alignment/Map format and SAMtools",
+      "type": "journal-article",
+      "issued_year": 2009,
+      "authors": [
+        {
+          "family_name": "Li",
+          "given_name": "Heng"
+        }
+      ],
+      "verification": {
+        "source": "manual-verified",
+        "verified_at": "2026-03-07"
+      }
+    }
+  ],
+  "claims": [
+    {
+      "id": "samtools-supports-post-processing",
+      "text": "SAMtools provides utilities for post-processing read alignments stored in SAM format.",
+      "citation_support": [
+        {
+          "citation_id": "li-2009-samtools",
+          "role": "primary"
+        }
+      ]
+    }
+  ]
+}

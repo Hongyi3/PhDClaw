@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "Please cite ClawBio Scholar using the metadata below."
+title: "ClawBio Scholar"
+type: software
+authors:
+  - family-names: "PLACEHOLDER"
+    given-names: "Maintainer"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+abstract: "Local-first research operating system for reproducible biomedical PhD workflows."
+repository-code: "https://github.com/ClawBio/clawbio-scholar"
+license: "MIT"
+version: "0.1.0-dev"
+date-released: "2026-03-07"
+keywords:
+  - bioinformatics
+  - computational biology
+  - reproducibility
+  - research software
+  - open science
+  - thesis workflows

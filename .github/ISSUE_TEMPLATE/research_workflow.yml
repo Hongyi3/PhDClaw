@@ -1,0 +1,25 @@
+name: Research workflow request
+description: Request a new exemplar or workflow capability
+title: "[workflow] "
+labels: ["workflow"]
+body:
+  - type: input
+    id: workflow_name
+    attributes:
+      label: Workflow name
+    validations:
+      required: true
+  - type: textarea
+    id: inputs
+    attributes:
+      label: Inputs
+      description: Datasets, identifiers, tools, or files involved.
+    validations:
+      required: true
+  - type: textarea
+    id: outputs
+    attributes:
+      label: Desired outputs
+      description: Figures, reports, chapters, release artifacts, etc.
+    validations:
+      required: true

@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0.0",
+  "citations": [],
+  "claims": [
+    {
+      "id": "unsupported-claim",
+      "text": "This claim intentionally lacks citation and analysis support."
+    }
+  ]
+}

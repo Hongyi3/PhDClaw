@@ -1,0 +1,18 @@
+---
+title: "Response to Reviewers"
+format:
+  html: default
+  pdf: default
+---
+
+# Cover Note
+
+# Reviewer 1
+
+## Comment 1
+## Response
+
+# Reviewer 2
+
+## Comment 1
+## Response

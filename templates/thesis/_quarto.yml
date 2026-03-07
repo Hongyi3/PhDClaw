@@ -1,0 +1,17 @@
+project:
+  type: book
+
+book:
+  title: "Thesis Title"
+  author: "Author Name"
+  chapters:
+    - index.qmd
+    - chapters/01-introduction.qmd
+    - chapters/02-methods.qmd
+    - chapters/03-results.qmd
+    - chapters/04-discussion.qmd
+
+format:
+  html: default
+  pdf: default
+  docx: default

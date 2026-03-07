@@ -1,0 +1,27 @@
+---
+title: "Article Title"
+author:
+  - name: "Author Name"
+date: today
+format:
+  html: default
+  pdf: default
+  docx: default
+bibliography: references.bib
+---
+
+# Summary
+
+# Introduction
+
+# Methods
+
+# Results
+
+# Discussion
+
+# Data availability
+
+# Code availability
+
+# AI usage disclosure
