@@ -38,4 +38,4 @@ Turn doctoral research work into reproducible, auditable, publication-ready, cit
 
 ## Current status
 
-Early implementation. The repository includes scaffold/governance layers plus a Phase 1 schema foundation in `packages/project-schema` for `Project`, `Citation`, `Claim`, `AnalysisRun`, `Figure`, `claim-set`, and the provenance-only `reproducibility-bundle`.
+Early implementation. The repository includes scaffold/governance layers plus a Phase 1 schema foundation in `packages/project-schema` for `Project`, `Citation`, `Claim`, `AnalysisRun`, `Figure`, `Release`, `claim-set`, and the provenance-only `reproducibility-bundle`.

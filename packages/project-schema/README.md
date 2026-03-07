@@ -5,17 +5,18 @@ Canonical JSON Schemas and validation helpers for ClawBio Scholar research objec
 ## Implementation approach
 
 - Draft 2020-12 JSON Schema files are the canonical machine-readable contracts.
-- Python validation helpers enforce cross-record rules for integrated bundles and figure-manifest integrity checks when raw JSON Schema would be awkward or misleading.
+- Python validation helpers enforce cross-record rules for integrated bundles plus figure and release integrity checks when raw JSON Schema would be awkward or misleading.
 - This package intentionally stops at local validation; it does not perform live DOI/PMID resolution or workflow execution.
 
-## Implemented through the reproducibility bundle milestone
+## Implemented through the release milestone
 
-- standalone schemas for `project`, `citation`, `claim`, `analysis-run`, and `figure`
+- standalone schemas for `project`, `citation`, `claim`, `analysis-run`, `figure`, and `release`
 - an integrated `claim-set` bundle format with optional top-level `project` metadata and `analysis_runs`
 - a provenance-only `reproducibility-bundle` format with embedded `project`, `analysis_runs`, and `figures`
 - Python bundle validation for citation references, analysis-run references, duplicate ids, project alignment, and figure-to-run provenance links
 - Python figure validation for duplicate input ids, duplicate panel ids, and panel-to-input references
-- example fixtures for valid and invalid claim-set, figure, and reproducibility-bundle validation cases
+- Python release validation for artifact-id uniqueness plus citation and reproducibility-bundle artifact-kind checks
+- example fixtures for valid and invalid claim-set, figure, reproducibility-bundle, and release validation cases
 - pytest coverage for schema loading, round-trip validation, and format checking
 
 ## Implemented models
@@ -25,11 +26,12 @@ Canonical JSON Schemas and validation helpers for ClawBio Scholar research objec
 - `Claim`
 - `AnalysisRun`
 - `Figure`
+- `Release`
 - `claim-set`
 - `reproducibility-bundle`
 
 ## Planned next contracts
-- `Release`
+- `Corpus`
 - broader project-level entities once downstream packages need them
 
 ## Public Python API
@@ -66,4 +68,4 @@ make check
 
 ## Scope boundary
 
-This package slice intentionally stops at local schema validation for `Project`, `Citation`, `Claim`, `AnalysisRun`, `Figure`, `claim-set`, and `reproducibility-bundle`. Release packaging, claim-to-figure linking, live identifier resolution, and RO-Crate/export concerns remain follow-up milestones.
+This package slice intentionally stops at local schema validation for `Project`, `Citation`, `Claim`, `AnalysisRun`, `Figure`, `Release`, `claim-set`, and `reproducibility-bundle`. Release packaging, citation-metadata content validation, claim-to-figure linking, live identifier resolution, and RO-Crate/export concerns remain follow-up milestones.

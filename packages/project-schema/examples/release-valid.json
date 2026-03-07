@@ -1,0 +1,37 @@
+{
+  "id": "samtools-methods-note-v0-1-0-rc1",
+  "project_id": "samtools-methods-note",
+  "title": "SAMtools Methods Note release candidate",
+  "summary": "Example staged release manifest for local validation of citation and reproducibility-bundle links.",
+  "version": "0.1.0-rc1",
+  "status": "candidate",
+  "created_at": "2026-03-07T10:30:00Z",
+  "citation": {
+    "cff_artifact_id": "citation-cff",
+    "codemeta_artifact_id": "codemeta-json"
+  },
+  "reproducibility_bundle_artifact_ids": [
+    "samtools-reproducibility-bundle"
+  ],
+  "artifacts": [
+    {
+      "id": "citation-cff",
+      "kind": "citation-cff",
+      "path": "CITATION.cff",
+      "media_type": "text/yaml"
+    },
+    {
+      "id": "codemeta-json",
+      "kind": "codemeta-json",
+      "path": "codemeta.json",
+      "media_type": "application/json"
+    },
+    {
+      "id": "samtools-reproducibility-bundle",
+      "kind": "reproducibility-bundle",
+      "path": "packages/project-schema/examples/reproducibility-bundle-valid.json",
+      "media_type": "application/json"
+    }
+  ],
+  "notes": "This manifest intentionally validates links only and does not assert archive publication state."
+}

@@ -64,14 +64,14 @@ The internal data model should treat the project as a graph of linked scholarly 
 
 - every `Claim` resolves to verified literature evidence or a reproducible `AnalysisRun`
 - every `Figure` resolves to inputs, parameters, and environment
-- every `Release` resolves to archived metadata and citation material
+- every `Release` resolves to citation material and, when published, archived metadata
 
 ## Package responsibilities
 
 ### `project-schema`
 Canonical JSON Schemas, Python cross-record validation, migrations, and examples.
 
-Current implemented foundation: `Project`, `Citation`, `Claim`, `AnalysisRun`, `Figure`, standalone figure validation, an integrated `claim-set` bundle validator, and a provenance-only `reproducibility-bundle` contract.
+Current implemented foundation: `Project`, `Citation`, `Claim`, `AnalysisRun`, `Figure`, `Release`, standalone figure and release validation, an integrated `claim-set` bundle validator, and a provenance-only `reproducibility-bundle` contract.
 
 ### `evidence-graph`
 Identifier resolution, citation graph, claim cards, evidence linking.

@@ -12,7 +12,7 @@ from urllib.parse import urlparse
 
 from jsonschema import Draft202012Validator, FormatChecker
 
-SCHEMA_VERSION = "1.3.0"
+SCHEMA_VERSION = "1.4.0"
 _SUPPORTED_SCHEMAS = frozenset(
     {
         "analysis-run",
@@ -21,6 +21,7 @@ _SUPPORTED_SCHEMAS = frozenset(
         "claim-set",
         "figure",
         "project",
+        "release",
         "reproducibility-bundle",
     }
 )
@@ -109,6 +110,8 @@ def validate_document(name: str, data: Mapping[str, object]) -> None:
 
     if name == "figure":
         _ensure_figure_integrity(data)
+    if name == "release":
+        _ensure_release_integrity(data)
 
 
 def validate_claim_set(data: Mapping[str, object]) -> None:
@@ -337,6 +340,60 @@ def _ensure_figure_integrity(data: Mapping[str, object]) -> None:
                 raise ProjectSchemaValidationError(
                     f"figure panel {panel_id!r} references unknown input_id {input_id!r}."
                 )
+
+
+def _ensure_release_integrity(data: Mapping[str, object]) -> None:
+    citation = _as_optional_mapping(data.get("citation"), "release.citation")
+    if citation is None:
+        raise ProjectSchemaValidationError("release.citation must be a JSON object.")
+
+    artifacts = _as_mapping_sequence(data.get("artifacts", []), "release.artifacts")
+    artifact_ids = [str(artifact["id"]) for artifact in artifacts]
+    _ensure_unique_ids(artifact_ids, "release artifact")
+    artifacts_by_id = {str(artifact["id"]): artifact for artifact in artifacts}
+
+    _ensure_release_artifact_kind(
+        artifacts_by_id=artifacts_by_id,
+        artifact_id=str(citation["cff_artifact_id"]),
+        expected_kind="citation-cff",
+        label="release.citation.cff_artifact_id",
+    )
+    _ensure_release_artifact_kind(
+        artifacts_by_id=artifacts_by_id,
+        artifact_id=str(citation["codemeta_artifact_id"]),
+        expected_kind="codemeta-json",
+        label="release.citation.codemeta_artifact_id",
+    )
+
+    reproducibility_bundle_artifact_ids = data.get("reproducibility_bundle_artifact_ids") or []
+    for index, artifact_id in enumerate(reproducibility_bundle_artifact_ids):
+        _ensure_release_artifact_kind(
+            artifacts_by_id=artifacts_by_id,
+            artifact_id=str(artifact_id),
+            expected_kind="reproducibility-bundle",
+            label=f"release.reproducibility_bundle_artifact_ids[{index}]",
+        )
+
+
+def _ensure_release_artifact_kind(
+    *,
+    artifacts_by_id: Mapping[str, Mapping[str, object]],
+    artifact_id: str,
+    expected_kind: str,
+    label: str,
+) -> None:
+    artifact = artifacts_by_id.get(artifact_id)
+    if artifact is None:
+        raise ProjectSchemaValidationError(
+            f"{label} references unknown artifact_id {artifact_id!r}."
+        )
+
+    artifact_kind = str(artifact["kind"])
+    if artifact_kind != expected_kind:
+        raise ProjectSchemaValidationError(
+            f"{label} references artifact {artifact_id!r} with kind {artifact_kind!r}; "
+            f"expected {expected_kind!r}."
+        )
 
 
 def _ensure_figure_input_matches_analysis_output(

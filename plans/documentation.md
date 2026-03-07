@@ -5,8 +5,8 @@ Use this file as shared memory for maintainers and coding agents.
 ## Current focus
 
 - live stage now tracked in `plans/current-milestone.md`
-- Phase 1 schema foundation is complete for `Project`, `Citation`, `Claim`, `AnalysisRun`, `Figure`, `claim-set`, and the provenance-only `reproducibility-bundle`
-- next milestone is `Define Release schema in packages/project-schema`; placeholder metadata cleanup remains intentionally deferred pending maintainer confirmation
+- Phase 1 schema foundation is complete for `Project`, `Citation`, `Claim`, `AnalysisRun`, `Figure`, `Release`, `claim-set`, and the provenance-only `reproducibility-bundle`
+- next milestone is `Define Corpus schema in packages/project-schema`; placeholder metadata cleanup remains intentionally deferred pending maintainer confirmation
 
 ## Decision log
 
@@ -78,3 +78,10 @@ Use this file as shared memory for maintainers and coding agents.
 **Files changed:** `packages/project-schema/`, `tests/test_project_schema.py`, `README.md`, `docs/01-architecture.md`, `docs/02-roadmap.md`, `issues/01-first-issues.md`, `llms.txt`, `plans/current-milestone.md`, `plans/documentation.md`.  
 **Validation:** `python3 scripts/validate_scaffold.py`; `pytest tests/test_project_schema.py`; `make check`.  
 **Follow-ups:** Define the `Release` schema next, keep placeholder maintainer metadata cleanup on the backlog pending human-confirmed identity details, and defer RO-Crate/export behavior until the release-engine milestone.
+
+### 2026-03-07
+**Task:** Implement the staged `Release` schema in `packages/project-schema`.  
+**Why:** Add the first local release manifest contract that links citation material and reproducibility bundles without widening into release-engine packaging, metadata generation, or archive publication behavior.  
+**Files changed:** `packages/project-schema/`, `tests/test_project_schema.py`, `README.md`, `docs/01-architecture.md`, `docs/02-roadmap.md`, `issues/01-first-issues.md`, `llms.txt`, `plans/current-milestone.md`, `plans/documentation.md`.  
+**Validation:** `python3 scripts/validate_scaffold.py`; `pytest tests/test_project_schema.py`; `make check`.  
+**Follow-ups:** Define the `Corpus` schema next, keep placeholder maintainer metadata cleanup on the backlog pending human-confirmed identity details, and defer citation-metadata content validation plus RO-Crate/export behavior until the release-engine milestone.

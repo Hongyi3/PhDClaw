@@ -5,7 +5,8 @@ This file is the canonical live-stage record for ClawBio Scholar.
 ## Project status summary
 
 - Repository scaffold, governance files, validation baseline, and milestone continuity are in place.
-- `packages/project-schema` now implements `Project`, `Citation`, `Claim`, `AnalysisRun`, `Figure`, integrated `claim-set` bundle validation, and a provenance-only `reproducibility-bundle` contract.
+- `packages/project-schema` now implements `Project`, `Citation`, `Claim`, `AnalysisRun`, `Figure`, `Release`, integrated `claim-set` bundle validation, and a provenance-only `reproducibility-bundle` contract.
+- The next active milestone after this completed step is the `Corpus` schema so evidence-ingest work can build on a typed project-level collection contract.
 - Placeholder maintainer metadata in public citation files remains unresolved, but this repository continued Phase 1 work by explicit human instruction.
 
 ## Current phase
@@ -14,30 +15,30 @@ This file is the canonical live-stage record for ClawBio Scholar.
 
 ## Current milestone
 
-`Add reproducibility bundle contract in packages/project-schema`
+`Define Release schema in packages/project-schema`
 
 ## Why this milestone matters
 
-- This milestone turns the existing standalone provenance manifests into a first bundle-level contract that can travel together for rerun and review.
-- A validated reproducibility bundle is the minimum bridge between figure provenance and later release packaging without widening into RO-Crate export or workflow execution.
+- This milestone adds the first machine-readable release manifest that can point at citation material and bundled reproducibility artifacts.
+- A staged local `Release` contract is the narrow bridge between provenance validation and later release-engine packaging without widening into archive publication, RO-Crate export, or metadata generation.
 
 ## In scope now
 
-- A machine-readable `reproducibility-bundle` schema in `packages/project-schema`.
-- Embedded-bundle validation for `Project`, `AnalysisRun`, and `Figure` records plus cross-record provenance checks.
-- Valid and invalid bundle fixtures, narrow pytest coverage, schema-version alignment, and progress/doc updates required to keep repository state accurate.
+- A machine-readable staged `release` schema in `packages/project-schema`.
+- Standalone `validate_document("release", ...)` support plus Python integrity checks for release artifact references and artifact kinds.
+- Valid and invalid release fixtures, narrow pytest coverage, schema-version alignment, and progress/doc updates required to keep repository state accurate.
 
 ## Out of scope now
 
 - Placeholder maintainer metadata cleanup in `CITATION.cff`, `codemeta.json`, and `CODEOWNERS`.
-- RO-Crate packaging, release packaging, identifier resolution, and workflow execution.
-- Claim/citation inclusion in the bundle, claim-to-figure linking, and any schema expansion beyond the minimum provenance-only bundle contract.
+- CFF or CodeMeta content validation, RO-Crate packaging, release generation, archive publication, identifier resolution, and workflow execution.
+- Any schema expansion beyond the minimum standalone `Release` contract, including corpus ingest behavior or claim-to-figure linking.
 
 ## Acceptance criteria
 
-- `packages/project-schema` exposes a real, documented `reproducibility-bundle` schema.
-- `load_schema("reproducibility-bundle")`, `validate_document("reproducibility-bundle", ...)`, and `validate_reproducibility_bundle(...)` work locally.
-- At least one valid bundle fixture passes round-trip validation and at least one invalid bundle fixture fails the intended provenance integrity check.
+- `packages/project-schema` exposes a real, documented `release` schema.
+- `load_schema("release")` and `validate_document("release", ...)` work locally.
+- At least one valid release fixture passes round-trip validation and invalid fixtures fail the intended release integrity rules.
 - Docs reflect the implementation accurately.
 - `plans/current-milestone.md` and `plans/documentation.md` record final status, validation, and the exact next milestone.
 
@@ -53,16 +54,17 @@ make check
 
 - State: completed
 - Validation: `python3 scripts/validate_scaffold.py`; `pytest tests/test_project_schema.py`; `make check`
-- Continuity note: this milestone builds on the already-complete Phase 1A foundation and Phase 1B figure provenance contract while preserving the earlier blocked Phase 0 metadata cleanup task as deferred follow-up work.
+- Continuity note: this milestone builds on the already-complete Phase 1A foundation, Phase 1B figure provenance contract, and reproducibility bundle contract while preserving the earlier blocked Phase 0 metadata cleanup task as deferred follow-up work.
 
 ## Risks / blockers
 
 - Placeholder maintainer metadata is still unresolved in public citation files and remains a follow-up outside this milestone.
-- Future schema milestones should keep standalone JSON Schemas and Python validation rules aligned so figure manifests, analysis manifests, and bundle contracts do not drift.
+- Future schema milestones should keep standalone JSON Schemas and Python validation rules aligned so release manifests, bundle contracts, and downstream release-engine logic do not drift.
+- Citation-material links in the `Release` fixture intentionally stop at manifest-level references; content validation for `CITATION.cff` and `codemeta.json` remains a later release-engine milestone.
 
 ## Exact next milestone after completion
 
-`Define Release schema in packages/project-schema`
+`Define Corpus schema in packages/project-schema`
 
 ## Update protocol
 
@@ -106,3 +108,14 @@ make check
 - Added the first provenance-only `reproducibility-bundle` contract to `packages/project-schema` with embedded `project`, `analysis_runs`, and `figures`.
 - Bumped the schema collection to `1.3.0`, added valid/invalid reproducibility-bundle fixtures, and extended pytest coverage for bundle-level provenance checks.
 - Set the exact next milestone to `Define Release schema in packages/project-schema`.
+
+### 2026-03-07 — Release schema milestone started
+
+- Promoted `Define Release schema in packages/project-schema` to the active Phase 1 milestone based on the repository progress files.
+- Locked the milestone scope to a staged local release manifest plus fixtures, tests, and doc/progress synchronization.
+
+### 2026-03-07 — Release schema milestone completed
+
+- Added the staged `Release` contract to `packages/project-schema`, including artifact-link validation for citation material and reproducibility bundles.
+- Bumped the schema collection to `1.4.0`, added valid/invalid release fixtures, and extended pytest coverage for release-specific integrity and format checks.
+- Set the exact next milestone to `Define Corpus schema in packages/project-schema`.

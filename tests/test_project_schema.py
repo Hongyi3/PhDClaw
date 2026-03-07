@@ -32,6 +32,7 @@ def _load_json(relative_path: str) -> dict:
         "claim-set",
         "figure",
         "project",
+        "release",
         "reproducibility-bundle",
     ],
 )
@@ -71,6 +72,15 @@ def test_validate_real_reproducibility_bundle_fixture_round_trip() -> None:
     validate_reproducibility_bundle(round_tripped)
 
     assert round_tripped["schema_version"] == SCHEMA_VERSION
+
+
+def test_validate_real_release_fixture_round_trip() -> None:
+    document = _load_json("release-valid.json")
+    round_tripped = json.loads(json.dumps(document))
+
+    validate_document("release", round_tripped)
+
+    assert round_tripped["status"] == "candidate"
 
 
 def test_validate_claim_set_rejects_missing_citation_identifier() -> None:
@@ -183,6 +193,27 @@ def test_validate_reproducibility_bundle_requires_bundle_local_provenance_link()
         validate_reproducibility_bundle(document)
 
 
+def test_validate_release_rejects_unknown_reproducibility_bundle_artifact() -> None:
+    document = _load_json("invalid/release-unknown-reproducibility-bundle.json")
+
+    with pytest.raises(ProjectSchemaValidationError, match="unknown artifact_id 'missing-bundle'"):
+        validate_document("release", document)
+
+
+def test_validate_release_rejects_citation_artifact_kind_mismatch() -> None:
+    document = _load_json("invalid/release-citation-kind-mismatch.json")
+
+    with pytest.raises(ProjectSchemaValidationError, match="expected 'citation-cff'"):
+        validate_document("release", document)
+
+
+def test_validate_release_requires_archive_for_published_status() -> None:
+    document = _load_json("invalid/release-published-missing-archive.json")
+
+    with pytest.raises(ProjectSchemaValidationError, match="'archive' is a required property"):
+        validate_document("release", document)
+
+
 @pytest.mark.parametrize(
     ("schema_name", "mutation_path", "bad_value", "expected_error"),
     [
@@ -224,6 +255,21 @@ def test_validate_figure_enforces_generated_at_format() -> None:
         validate_document("figure", document)
 
 
+def test_validate_release_enforces_archive_landing_page_url_format() -> None:
+    document = _load_json("release-valid.json")
+    document["status"] = "published"
+    document["released_at"] = "2026-03-07T11:00:00Z"
+    document["archive"] = {
+        "service": "zenodo",
+        "version_identifier": "10.5281/zenodo.1234567",
+        "landing_page_url": "not a uri",
+        "archived_at": "2026-03-07T11:30:00Z",
+    }
+
+    with pytest.raises(ProjectSchemaValidationError, match="is not a 'uri'"):
+        validate_document("release", document)
+
+
 @pytest.mark.parametrize(
     "schema_name",
     [
@@ -233,6 +279,7 @@ def test_validate_figure_enforces_generated_at_format() -> None:
         "claim-set",
         "figure",
         "project",
+        "release",
         "reproducibility-bundle",
     ],
 )

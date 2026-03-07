@@ -1,0 +1,32 @@
+{
+  "id": "samtools-methods-note-v0-1-0-rc1",
+  "project_id": "samtools-methods-note",
+  "title": "SAMtools Methods Note release candidate",
+  "version": "0.1.0-rc1",
+  "status": "candidate",
+  "created_at": "2026-03-07T10:30:00Z",
+  "citation": {
+    "cff_artifact_id": "citation-cff",
+    "codemeta_artifact_id": "codemeta-json"
+  },
+  "reproducibility_bundle_artifact_ids": [
+    "missing-bundle"
+  ],
+  "artifacts": [
+    {
+      "id": "citation-cff",
+      "kind": "citation-cff",
+      "path": "CITATION.cff"
+    },
+    {
+      "id": "codemeta-json",
+      "kind": "codemeta-json",
+      "path": "codemeta.json"
+    },
+    {
+      "id": "samtools-reproducibility-bundle",
+      "kind": "reproducibility-bundle",
+      "path": "packages/project-schema/examples/reproducibility-bundle-valid.json"
+    }
+  ]
+}

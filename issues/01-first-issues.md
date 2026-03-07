@@ -7,6 +7,7 @@
 - Create package skeleton for `policy-checks`
 - Add docs site plan and navigation
 - Replace placeholder metadata in citation files
+- Define `Corpus` schema in `packages/project-schema`
 
 ## Evidence
 - Implement DOI and PMID resolution interface
@@ -26,7 +27,7 @@
 - Add response-to-reviewers template
 
 ## Release
-- Define `Release` schema in `packages/project-schema`
+- Define `Release` schema in `packages/project-schema` (implemented 2026-03-07)
 - Define release checklist
 - Implement citation metadata validation
 - Add RO-Crate mapping spec
