@@ -42,3 +42,10 @@ Use this file as shared memory for maintainers and coding agents.
 **Files changed:** `packages/project-schema/`, `tests/test_project_schema.py`, `pyproject.toml`, `Makefile`, `.github/workflows/ci.yml`, `README.md`, `plans/implement.md`, `plans/documentation.md`, `issues/01-first-issues.md`.  
 **Validation:** `ruff check .`; `pytest`; `make check`.  
 **Follow-ups:** Replace placeholder maintainer metadata, add additional research-object schemas (`AnalysisRun`, `Figure`, `Release`), implement identifier resolution in `evidence-graph`, and add Quarto render smoke tests once Quarto is available in the validation environment.
+
+### 2026-03-07
+**Task:** Add the Codex GitHub push rule to the repository contract and runbook.  
+**Why:** Require Codex to push its own completed scoped changes while keeping unrelated local work out of those pushes.  
+**Files changed:** `AGENTS.md`, `plans/implement.md`, `plans/documentation.md`.  
+**Validation:** `python3 scripts/validate_scaffold.py`; `make check`.  
+**Follow-ups:** This rule applies only to Codex-authored scoped changes; if pushing is blocked, report the exact failure instead of silently skipping the push.

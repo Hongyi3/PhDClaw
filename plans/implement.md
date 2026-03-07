@@ -10,6 +10,7 @@ Use this file as the operational instruction set for Codex.
 4. Run validation before considering a task complete.
 5. Update docs in the same branch as the implementation.
 6. Append a short note to `plans/documentation.md` after each meaningful change.
+7. After completing any Codex-authored scoped repository change, commit and push the current branch to GitHub before ending the task, unless a human explicitly says not to or pushing is blocked. Never bundle unrelated local changes in that push.
 
 ## Standard task loop
 
@@ -47,6 +48,9 @@ Add a note to `plans/documentation.md`:
 - why
 - validation run
 - follow-ups
+
+### 7. Commit and push
+After completing any Codex-authored scoped repository change, commit and push the current branch to GitHub before ending the task, unless a human explicitly says not to or pushing is blocked. Never bundle unrelated local changes in that push.
 
 ## Stop conditions
 

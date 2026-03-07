@@ -24,6 +24,7 @@ The target outcome is not "more AI features." The target outcome is:
 6. **Synchronize docs with code.** Code changes that affect behavior must update the relevant docs in the same branch.
 7. **Do not silently introduce new product claims** in README, docs, or UI that are not backed by implementation.
 8. **Use placeholders honestly.** When a file is a template or stub, label it clearly.
+9. **Push completed Codex changes.** After completing any Codex-authored scoped repository change, commit and push the current branch to GitHub before ending the task, unless a human explicitly says not to or pushing is blocked. Never bundle unrelated local changes in that push.
 
 ## Source-of-truth files
 
