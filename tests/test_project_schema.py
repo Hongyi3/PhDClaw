@@ -30,6 +30,7 @@ def _load_json(relative_path: str) -> dict:
         "citation",
         "claim",
         "claim-set",
+        "corpus",
         "figure",
         "project",
         "release",
@@ -62,6 +63,15 @@ def test_validate_real_figure_fixture_round_trip() -> None:
     validate_document("figure", round_tripped)
 
     assert round_tripped["project_id"] == "samtools-methods-note"
+
+
+def test_validate_real_corpus_fixture_round_trip() -> None:
+    document = _load_json("corpus-valid.json")
+    round_tripped = json.loads(json.dumps(document))
+
+    validate_document("corpus", round_tripped)
+
+    assert round_tripped["holdings"][0]["citation_id"] == "li-2009-samtools"
 
 
 def test_validate_real_reproducibility_bundle_fixture_round_trip() -> None:
@@ -118,6 +128,29 @@ def test_validate_figure_rejects_unknown_panel_input_reference() -> None:
 
     with pytest.raises(ProjectSchemaValidationError, match="unknown input_id 'missing-input'"):
         validate_document("figure", document)
+
+
+def test_validate_corpus_rejects_unknown_holding_citation_reference() -> None:
+    document = _load_json("invalid/corpus-holding-dangling-citation.json")
+
+    with pytest.raises(ProjectSchemaValidationError, match="unknown citation_id 'missing-citation'"):
+        validate_document("corpus", document)
+
+
+def test_validate_corpus_rejects_duplicate_citation_ids() -> None:
+    document = _load_json("corpus-valid.json")
+    document["citations"].append(document["citations"][0].copy())
+
+    with pytest.raises(ProjectSchemaValidationError, match="Duplicate corpus citation ids"):
+        validate_document("corpus", document)
+
+
+def test_validate_corpus_rejects_duplicate_holding_ids() -> None:
+    document = _load_json("corpus-valid.json")
+    document["holdings"].append(document["holdings"][0].copy())
+
+    with pytest.raises(ProjectSchemaValidationError, match="Duplicate corpus holding ids"):
+        validate_document("corpus", document)
 
 
 def test_validate_figure_rejects_duplicate_input_ids() -> None:
@@ -224,24 +257,29 @@ def test_validate_release_requires_archive_for_published_status() -> None:
             "2026-13-07T09:00:00Z",
             "is not a 'date-time'",
         ),
+        ("corpus", ("holdings", 0, "collected_at"), "2026/03/08", "is not a 'date'"),
         ("citation", ("citations", 0, "verification", "access_url"), "not a uri", "is not a 'uri'"),
     ],
 )
 def test_validate_document_enforces_declared_formats(
     schema_name: str, mutation_path: tuple[object, ...], bad_value: str, expected_error: str
 ) -> None:
-    document = _load_json("claim-set-valid.json")
+    if schema_name == "corpus":
+        document = _load_json("corpus-valid.json")
+        invalid_document = document
+    else:
+        document = _load_json("claim-set-valid.json")
+        if schema_name == "project":
+            invalid_document = document["project"]
+        elif schema_name == "citation":
+            invalid_document = document["citations"][0]
+        else:
+            invalid_document = document["analysis_runs"][0]
+
     target = document
     for part in mutation_path[:-1]:
         target = target[part]
     target[mutation_path[-1]] = bad_value
-
-    if schema_name == "project":
-        invalid_document = document["project"]
-    elif schema_name == "citation":
-        invalid_document = document["citations"][0]
-    else:
-        invalid_document = document["analysis_runs"][0]
 
     with pytest.raises(ProjectSchemaValidationError, match=expected_error):
         validate_document(schema_name, invalid_document)
@@ -277,6 +315,7 @@ def test_validate_release_enforces_archive_landing_page_url_format() -> None:
         "citation",
         "claim",
         "claim-set",
+        "corpus",
         "figure",
         "project",
         "release",

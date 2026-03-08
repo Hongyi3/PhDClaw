@@ -12,13 +12,14 @@ from urllib.parse import urlparse
 
 from jsonschema import Draft202012Validator, FormatChecker
 
-SCHEMA_VERSION = "1.4.0"
+SCHEMA_VERSION = "1.5.0"
 _SUPPORTED_SCHEMAS = frozenset(
     {
         "analysis-run",
         "citation",
         "claim",
         "claim-set",
+        "corpus",
         "figure",
         "project",
         "release",
@@ -110,6 +111,8 @@ def validate_document(name: str, data: Mapping[str, object]) -> None:
 
     if name == "figure":
         _ensure_figure_integrity(data)
+    if name == "corpus":
+        _ensure_corpus_integrity(data)
     if name == "release":
         _ensure_release_integrity(data)
 
@@ -340,6 +343,31 @@ def _ensure_figure_integrity(data: Mapping[str, object]) -> None:
                 raise ProjectSchemaValidationError(
                     f"figure panel {panel_id!r} references unknown input_id {input_id!r}."
                 )
+
+
+def _ensure_corpus_integrity(data: Mapping[str, object]) -> None:
+    citations = _as_mapping_sequence(data.get("citations", []), "corpus.citations")
+    holdings = _as_mapping_sequence(data.get("holdings", []), "corpus.holdings")
+
+    for index, citation in enumerate(citations):
+        try:
+            validate_document("citation", citation)
+        except ProjectSchemaValidationError as exc:
+            raise ProjectSchemaValidationError(f"corpus.citations[{index}]: {exc}") from exc
+
+    citation_ids = [str(citation["id"]) for citation in citations]
+    holding_ids = [str(holding["id"]) for holding in holdings]
+    _ensure_unique_ids(citation_ids, "corpus citation")
+    _ensure_unique_ids(holding_ids, "corpus holding")
+
+    known_citation_ids = set(citation_ids)
+    for index, holding in enumerate(holdings):
+        citation_id = str(holding["citation_id"])
+        if citation_id not in known_citation_ids:
+            raise ProjectSchemaValidationError(
+                "corpus.holdings"
+                f"[{index}].citation_id references unknown citation_id {citation_id!r}."
+            )
 
 
 def _ensure_release_integrity(data: Mapping[str, object]) -> None:

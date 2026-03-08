@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://clawbio.org/schemas/project-schema/figure-1.4.0.json",
+  "$id": "https://clawbio.org/schemas/project-schema/figure-1.5.0.json",
   "title": "ClawBio Scholar Figure",
   "type": "object",
   "additionalProperties": false,

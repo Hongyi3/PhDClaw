@@ -5,8 +5,8 @@ This file is the canonical live-stage record for ClawBio Scholar.
 ## Project status summary
 
 - Repository scaffold, governance files, validation baseline, and milestone continuity are in place.
-- `packages/project-schema` now implements `Project`, `Citation`, `Claim`, `AnalysisRun`, `Figure`, `Release`, integrated `claim-set` bundle validation, and a provenance-only `reproducibility-bundle` contract.
-- The next active milestone after this completed step is the `Corpus` schema so evidence-ingest work can build on a typed project-level collection contract.
+- `packages/project-schema` now implements `Project`, `Corpus`, `Citation`, `Claim`, `AnalysisRun`, `Figure`, `Release`, integrated `claim-set` bundle validation, and a provenance-only `reproducibility-bundle` contract.
+- The next active milestone after this completed step is the `Dataset` schema so evidence-ingest and project-asset work can build on typed corpus and dataset manifests.
 - Placeholder maintainer metadata in public citation files remains unresolved, but this repository continued Phase 1 work by explicit human instruction.
 
 ## Current phase
@@ -15,30 +15,30 @@ This file is the canonical live-stage record for ClawBio Scholar.
 
 ## Current milestone
 
-`Define Release schema in packages/project-schema`
+`Define Corpus schema in packages/project-schema`
 
 ## Why this milestone matters
 
-- This milestone adds the first machine-readable release manifest that can point at citation material and bundled reproducibility artifacts.
-- A staged local `Release` contract is the narrow bridge between provenance validation and later release-engine packaging without widening into archive publication, RO-Crate export, or metadata generation.
+- This milestone adds the first machine-readable project-level corpus manifest for verified literature plus optional local holdings.
+- A narrow local `Corpus` contract gives later evidence-ingest and dataset work a typed collection boundary without widening into identifier resolution, bibliography import, or workflow execution.
 
 ## In scope now
 
-- A machine-readable staged `release` schema in `packages/project-schema`.
-- Standalone `validate_document("release", ...)` support plus Python integrity checks for release artifact references and artifact kinds.
-- Valid and invalid release fixtures, narrow pytest coverage, schema-version alignment, and progress/doc updates required to keep repository state accurate.
+- A machine-readable standalone `corpus` schema in `packages/project-schema`.
+- Standalone `validate_document("corpus", ...)` support plus Python integrity checks for embedded citation validation, holding references, and duplicate ids.
+- Valid and invalid corpus fixtures, narrow pytest coverage, schema-version alignment, and progress/doc updates required to keep repository state accurate.
 
 ## Out of scope now
 
 - Placeholder maintainer metadata cleanup in `CITATION.cff`, `codemeta.json`, and `CODEOWNERS`.
-- CFF or CodeMeta content validation, RO-Crate packaging, release generation, archive publication, identifier resolution, and workflow execution.
-- Any schema expansion beyond the minimum standalone `Release` contract, including corpus ingest behavior or claim-to-figure linking.
+- DOI or PMID resolution, BibTeX import, corpus ingest execution, file-existence checks, and workflow execution.
+- Any schema expansion beyond the minimum standalone `Corpus` contract, including `Dataset`, unresolved-reference handling, or claim-to-figure linking.
 
 ## Acceptance criteria
 
-- `packages/project-schema` exposes a real, documented `release` schema.
-- `load_schema("release")` and `validate_document("release", ...)` work locally.
-- At least one valid release fixture passes round-trip validation and invalid fixtures fail the intended release integrity rules.
+- `packages/project-schema` exposes a real, documented `corpus` schema.
+- `load_schema("corpus")` and `validate_document("corpus", ...)` work locally.
+- At least one valid corpus fixture passes round-trip validation and invalid fixtures fail the intended corpus integrity rules.
 - Docs reflect the implementation accurately.
 - `plans/current-milestone.md` and `plans/documentation.md` record final status, validation, and the exact next milestone.
 
@@ -54,17 +54,17 @@ make check
 
 - State: completed
 - Validation: `python3 scripts/validate_scaffold.py`; `pytest tests/test_project_schema.py`; `make check`
-- Continuity note: this milestone builds on the already-complete Phase 1A foundation, Phase 1B figure provenance contract, and reproducibility bundle contract while preserving the earlier blocked Phase 0 metadata cleanup task as deferred follow-up work.
+- Continuity note: this milestone builds on the already-complete Phase 1A foundation, Phase 1B figure provenance contract, reproducibility bundle contract, and release manifest while preserving the earlier blocked Phase 0 metadata cleanup task as deferred follow-up work.
 
 ## Risks / blockers
 
 - Placeholder maintainer metadata is still unresolved in public citation files and remains a follow-up outside this milestone.
-- Future schema milestones should keep standalone JSON Schemas and Python validation rules aligned so release manifests, bundle contracts, and downstream release-engine logic do not drift.
-- Citation-material links in the `Release` fixture intentionally stop at manifest-level references; content validation for `CITATION.cff` and `codemeta.json` remains a later release-engine milestone.
+- Future schema milestones should keep standalone JSON Schemas and Python validation rules aligned so corpus manifests, bundle contracts, and downstream ingest logic do not drift.
+- The `Corpus` fixture intentionally validates manifest structure and internal citation/holding references only; identifier resolution, bibliography import, and file-presence checks remain later evidence-system milestones.
 
 ## Exact next milestone after completion
 
-`Define Corpus schema in packages/project-schema`
+`Define Dataset schema in packages/project-schema`
 
 ## Update protocol
 
@@ -119,3 +119,14 @@ make check
 - Added the staged `Release` contract to `packages/project-schema`, including artifact-link validation for citation material and reproducibility bundles.
 - Bumped the schema collection to `1.4.0`, added valid/invalid release fixtures, and extended pytest coverage for release-specific integrity and format checks.
 - Set the exact next milestone to `Define Corpus schema in packages/project-schema`.
+
+### 2026-03-08 — Corpus schema milestone started
+
+- Promoted `Define Corpus schema in packages/project-schema` to the active Phase 1 milestone based on the repository progress files.
+- Locked the milestone scope to a standalone local corpus manifest plus holdings, fixtures, tests, and doc/progress synchronization.
+
+### 2026-03-08 — Corpus schema milestone completed
+
+- Added the standalone `Corpus` contract to `packages/project-schema`, including embedded citation validation and local holding-to-citation integrity checks.
+- Bumped the schema collection to `1.5.0`, added valid/invalid corpus fixtures, and extended pytest coverage for corpus-specific integrity and format checks.
+- Set the exact next milestone to `Define Dataset schema in packages/project-schema`.

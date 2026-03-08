@@ -7,7 +7,8 @@
 - Create package skeleton for `policy-checks`
 - Add docs site plan and navigation
 - Replace placeholder metadata in citation files
-- Define `Corpus` schema in `packages/project-schema`
+- Define `Corpus` schema in `packages/project-schema` (implemented 2026-03-08)
+- Define `Dataset` schema in `packages/project-schema`
 
 ## Evidence
 - Implement DOI and PMID resolution interface

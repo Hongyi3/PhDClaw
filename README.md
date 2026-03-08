@@ -20,7 +20,7 @@ The north star is simple:
 
 ## Current implementation status
 
-This repository now contains the planning and governance layer plus the Phase 1 schema foundation, the reproducibility-bundle contract, and the staged `Release` manifest contract.
+This repository now contains the planning and governance layer plus the Phase 1 schema foundation through `Corpus`, the reproducibility-bundle contract, and the staged `Release` manifest contract.
 
 Current working capabilities:
 
@@ -30,9 +30,9 @@ Current working capabilities:
 - a milestone-by-milestone execution plan in `plans/`
 - architecture, evaluation, and launch documents in `docs/`
 - GitHub issue forms, CODEOWNERS, CI, and release-prep metadata
-- a JSON-Schema-first `project-schema` package for `Project`, `Citation`, `Claim`, `AnalysisRun`, `Figure`, and `Release`
-- Python validation for the integrated `claim-set` bundle format, standalone figure and release integrity checks, and the provenance-only `reproducibility-bundle`
-- example claim-set, figure, reproducibility-bundle, and release fixtures with pytest coverage for schema loading, round-trip validation, and reference checks
+- a JSON-Schema-first `project-schema` package for `Project`, `Corpus`, `Citation`, `Claim`, `AnalysisRun`, `Figure`, and `Release`
+- Python validation for the integrated `claim-set` bundle format, standalone corpus, figure, and release integrity checks, and the provenance-only `reproducibility-bundle`
+- example corpus, claim-set, figure, reproducibility-bundle, and release fixtures with pytest coverage for schema loading, round-trip validation, and reference checks
 - Quarto starter templates for article, thesis, and reviewer response workflows
 - JOSS paper starter material
 
@@ -45,7 +45,7 @@ Current working capabilities:
 
 ## Next 10 tasks
 
-1. Expand `project-schema` to cover `Corpus`.
+1. Expand `project-schema` to cover `Dataset`.
 2. Replace placeholder metadata in `CITATION.cff`, `codemeta.json`, and `CODEOWNERS`.
 3. Implement the evidence graph package.
 4. Add DOI / PMID / BibTeX ingestion.
@@ -93,4 +93,4 @@ The `project-schema` package can also be exercised directly with:
 pytest tests/test_project_schema.py
 ```
 
-The package uses bundled JSON Schemas for entity contracts and Python helpers for `claim-set`, `figure`, `release`, and `reproducibility-bundle` validation.
+The package uses bundled JSON Schemas for entity contracts and Python helpers for `claim-set`, `corpus`, `figure`, `release`, and `reproducibility-bundle` validation.

@@ -5,8 +5,8 @@ Use this file as shared memory for maintainers and coding agents.
 ## Current focus
 
 - live stage now tracked in `plans/current-milestone.md`
-- Phase 1 schema foundation is complete for `Project`, `Citation`, `Claim`, `AnalysisRun`, `Figure`, `Release`, `claim-set`, and the provenance-only `reproducibility-bundle`
-- next milestone is `Define Corpus schema in packages/project-schema`; placeholder metadata cleanup remains intentionally deferred pending maintainer confirmation
+- Phase 1 schema foundation is complete for `Project`, `Corpus`, `Citation`, `Claim`, `AnalysisRun`, `Figure`, `Release`, `claim-set`, and the provenance-only `reproducibility-bundle`
+- next milestone is `Define Dataset schema in packages/project-schema`; placeholder metadata cleanup remains intentionally deferred pending maintainer confirmation
 
 ## Decision log
 
@@ -18,6 +18,9 @@ Use this file as shared memory for maintainers and coding agents.
 - recorded validation drift: docs used `python` while the local environment only exposed `python3`
 - selected `Define Claim and Citation schema` as the highest-leverage first milestone because it unlocks evidence integrity work without widening scope
 - recorded an explicit human override to start `Phase 1A — Research object schema foundation` before the blocked Phase 0 metadata-cleanup milestone was resolved
+
+### 2026-03-08
+- resolved a prompt/progress mismatch by following the repository's canonical live-stage files, which recorded `Corpus` as the next incomplete milestone after `Release`
 
 ## Gap analysis
 
@@ -85,3 +88,10 @@ Use this file as shared memory for maintainers and coding agents.
 **Files changed:** `packages/project-schema/`, `tests/test_project_schema.py`, `README.md`, `docs/01-architecture.md`, `docs/02-roadmap.md`, `issues/01-first-issues.md`, `llms.txt`, `plans/current-milestone.md`, `plans/documentation.md`.  
 **Validation:** `python3 scripts/validate_scaffold.py`; `pytest tests/test_project_schema.py`; `make check`.  
 **Follow-ups:** Define the `Corpus` schema next, keep placeholder maintainer metadata cleanup on the backlog pending human-confirmed identity details, and defer citation-metadata content validation plus RO-Crate/export behavior until the release-engine milestone.
+
+### 2026-03-08
+**Task:** Implement the standalone `Corpus` schema in `packages/project-schema`.  
+**Why:** Add the first project-level verified literature collection contract so evidence-ingest and dataset milestones can build on a typed local corpus manifest without widening into identifier resolution or ingest execution.  
+**Files changed:** `packages/project-schema/`, `tests/test_project_schema.py`, `README.md`, `docs/01-architecture.md`, `docs/02-roadmap.md`, `issues/01-first-issues.md`, `llms.txt`, `plans/current-milestone.md`, `plans/documentation.md`.  
+**Validation:** `python3 scripts/validate_scaffold.py`; `pytest tests/test_project_schema.py`; `make check`.  
+**Follow-ups:** Define the `Dataset` schema next, keep placeholder maintainer metadata cleanup on the backlog pending human-confirmed identity details, and defer DOI/PMID resolution, BibTeX import, and file-existence checks to later evidence-system milestones.

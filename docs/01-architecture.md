@@ -71,7 +71,7 @@ The internal data model should treat the project as a graph of linked scholarly 
 ### `project-schema`
 Canonical JSON Schemas, Python cross-record validation, migrations, and examples.
 
-Current implemented foundation: `Project`, `Citation`, `Claim`, `AnalysisRun`, `Figure`, `Release`, standalone figure and release validation, an integrated `claim-set` bundle validator, and a provenance-only `reproducibility-bundle` contract.
+Current implemented foundation: `Project`, `Corpus`, `Citation`, `Claim`, `AnalysisRun`, `Figure`, `Release`, standalone corpus, figure, and release validation, an integrated `claim-set` bundle validator, and a provenance-only `reproducibility-bundle` contract.
 
 ### `evidence-graph`
 Identifier resolution, citation graph, claim cards, evidence linking.

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://clawbio.org/schemas/project-schema/claim-set-1.4.0.json",
+  "$id": "https://clawbio.org/schemas/project-schema/claim-set-1.5.0.json",
   "title": "ClawBio Scholar Claim Set",
   "type": "object",
   "additionalProperties": false,
@@ -12,7 +12,7 @@
   "properties": {
     "schema_version": {
       "type": "string",
-      "const": "1.4.0"
+      "const": "1.5.0"
     },
     "project": {
       "type": "object",

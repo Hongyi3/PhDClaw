@@ -1,0 +1,39 @@
+{
+  "id": "samtools-methods-corpus",
+  "project_id": "samtools-methods-note",
+  "name": "SAMtools methods corpus",
+  "description": "Invalid corpus fixture with a holding that points at a missing citation.",
+  "created_at": "2026-03-08",
+  "citations": [
+    {
+      "id": "li-2009-samtools",
+      "title": "The Sequence Alignment/Map format and SAMtools",
+      "type": "journal-article",
+      "issued_year": 2009,
+      "authors": [
+        {
+          "family_name": "Li",
+          "given_name": "Heng"
+        }
+      ],
+      "doi": "10.1093/bioinformatics/btp352",
+      "pmid": "19505943",
+      "pmcid": "PMC2723002",
+      "verification": {
+        "source": "pubmed",
+        "verified_at": "2026-03-07",
+        "access_url": "https://pubmed.ncbi.nlm.nih.gov/19505943/"
+      }
+    }
+  ],
+  "holdings": [
+    {
+      "id": "missing-paper-pdf",
+      "citation_id": "missing-citation",
+      "kind": "article-pdf",
+      "path": "corpus/missing-paper.pdf",
+      "collected_at": "2026-03-08",
+      "media_type": "application/pdf"
+    }
+  ]
+}
