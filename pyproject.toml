@@ -13,7 +13,7 @@ authors = [
   { name = "PLACEHOLDER", email = "maintainer@example.org" }
 ]
 dependencies = [
-  "jsonschema>=4.23,<5",
+  "jsonschema>=4.26.0,<5",
 ]
 
 [project.optional-dependencies]
