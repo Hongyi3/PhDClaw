@@ -19,7 +19,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
   "pytest>=9,<10",
-  "ruff>=0.15,<0.16",
+  "ruff>=0.15.10,<0.16",
 ]
 
 [tool.setuptools]
